@@ -43,3 +43,23 @@
            :x :_ :_]]
     (is (= (check-columns board :o) :no-win))
     (is (= (check-columns board :x) :no-win))))) 
+
+(deftest check-diagonals-test
+  (testing "no-win conditions"
+    (let [board 
+          [:x :_ :o
+           :o :_ :_
+           :o :_ :x]]
+    (is (= (check-diagonals board :x) :no-win))))
+  (testing "three X's in a L-R diagonal wins"
+    (let [board 
+          [:x :_ :o
+           :o :x :_
+           :o :_ :x]]
+    (is (= (check-diagonals board :x) :x))))
+  (testing "three X's in a R-L diagonal wins"
+    (let [board 
+          [:x :_ :o
+           :o :o :_
+           :o :_ :x]]
+    (is (= (check-diagonals board :o) :o)))))
