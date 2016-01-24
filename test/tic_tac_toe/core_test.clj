@@ -63,3 +63,13 @@
            :o :o :_
            :o :_ :x]]
     (is (= (check-diagonals board :o) :o)))))
+
+(deftest add-marks-test
+  (testing "Adding marks to the board"
+    (let [turn-0 [:_ :_ :_ 
+                 :_ :_ :_ 
+                 :_ :_ :_]
+          turn-1 [:x :_ :_
+                  :_ :_ :_
+                  :_ :_ :_]]
+    (is (= (place-mark turn-0 :x 0) turn-1)))))
