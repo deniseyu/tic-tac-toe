@@ -23,3 +23,23 @@
     (is (= (check-rows board :o) :no-win))
     (is (= (check-rows board :x) :no-win)))))
 
+(deftest check-columns-test
+  (testing "three X's in a column wins"
+    (let [board 
+          [:x :_ :o
+           :x :_ :_
+           :x :_ :_]]
+    (is (= (check-columns board :x) :x))))
+  (testing "three O's in a column win"
+    (let [board
+          [:x :o :o
+           :_ :o :_
+           :x :o :_]]
+    (is (= (check-columns board :o) :o))))
+  (testing "not-win conditions"
+    (let [board
+          [:x :o :o
+           :_ :x :_
+           :x :_ :_]]
+    (is (= (check-columns board :o) :no-win))
+    (is (= (check-columns board :x) :no-win))))) 
